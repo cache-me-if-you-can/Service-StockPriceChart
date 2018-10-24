@@ -1,0 +1,21 @@
+{
+  "name": "stockpricechart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "dev:react": "webpack -d --watch"
+  },
+  "author": "Tim Lin",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.6",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  }
+}
