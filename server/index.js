@@ -12,12 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client/dist'));
 
 // Route path: '/api/symbol/:symbol/day/'
-// Request URL: http://localhost:3000/api/symbol/mm/day
-// req.params: { "symbol": "mm" }
+// Request URL: http://localhost:3000/api/symbol/MMMM/day
+// req.params: { "symbol": "MMMM" }
 
 // Route path: '/api/symbol/:symbol/week/'
-// Request URL: http://localhost:3000/api/symbol/mm/week
-// req.params: { "symbol": "mm" }
+// Request URL: http://localhost:3000/api/symbol/MMMM/week
+// req.params: { "symbol": "MMMM" }
 
 app.get('/api/symbol/day', function (req, res) {
   const symbol = req.params;
