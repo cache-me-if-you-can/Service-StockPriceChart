@@ -14,27 +14,18 @@ class App extends React.Component {
       priceData: [],
     }
     
+    this.handleGet.bind(this);
   }
 
-  componentDidMount(event) {
-
+  componentDidMount() {
+    this.handleGet();
   }
-
-  handleGet () {
-    let symbol = 'mm';
-
-    $.ajax({
-      method: 'GET',
-      url: `/api/symbol/:${symbol}/day`,
-      contentType: 'application/json',
-      success: function (priceData) {
-        console.log(priceData);
-        that.setState({ priceData });
-      },
-      error: function (error) {
-        console.log(error);
-      }
-    });
+ 
+  handleGet(symbol = 'MMMM') {
+    fetch(`/api/symbol/${symbol}/day`)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log(error));
   }
 
   render () {
