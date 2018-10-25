@@ -8,11 +8,10 @@ const priceDataSchema = new mongoose.Schema({
   price: Number,
   owner: { type: Number, default: 0 },
   rating: { type: Number, default: 0 },
-},
-  {
-    timestamps: true
-  }
-);
+  time: String,
+  date: String,
+});
+
 
 const PriceDataDay = mongoose.model('PriceDataDay', priceDataSchema);
 

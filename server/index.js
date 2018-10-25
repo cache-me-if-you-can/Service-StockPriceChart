@@ -11,15 +11,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client/dist'));
 
-// Route path: '/api/day/symbol/:symbol'
-// Request URL: http://localhost:3000/day/symbol/mm
+// Route path: '/api/symbol/:symbol/day/'
+// Request URL: http://localhost:3000/api/symbol/mm/day
 // req.params: { "symbol": "mm" }
 
-// Route path: '/api/week/symbol/:symbol'
-// Request URL: http://localhost:3000/week/symbol/mm
+// Route path: '/api/symbol/:symbol/week/'
+// Request URL: http://localhost:3000/api/symbol/mm/week
 // req.params: { "symbol": "mm" }
 
-app.get('/api/day/symbol', function (req, res) {
+app.get('/api/symbol/day', function (req, res) {
   const symbol = req.params;
   PriceDataDay.find({}, (error, results) => {
     if (error) {

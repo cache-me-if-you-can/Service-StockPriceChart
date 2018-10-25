@@ -25,7 +25,7 @@ class App extends React.Component {
 
     $.ajax({
       method: 'GET',
-      url: `/api/day/symbol/:${symbol}`,
+      url: `/api/symbol/:${symbol}/day`,
       contentType: 'application/json',
       success: function (priceData) {
         console.log(priceData);
