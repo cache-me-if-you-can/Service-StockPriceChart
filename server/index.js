@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 app.get('/api/symbol/:symbolId/day', (req, res) => {
   const { symbolId } = req.params;
-
   PriceDataDay.find({ symbol: symbolId }, (error, results) => {
     if (error) {
       res.status(500).send(error);
@@ -27,7 +26,6 @@ app.get('/api/symbol/:symbolId/day', (req, res) => {
 
 app.get('/api/symbol/:symbolId/week', (req, res) => {
   const { symbolId } = req.params;
-
   PriceDataDay.find({ symbol: symbolId }, (error, results) => {
     if (error) {
       res.status(500).send(error);
