@@ -4,7 +4,6 @@ import $ from 'jquery';
 import Chart from './components/chart.jsx';
 
 const moment = require('moment');
-// moment().format();
 
 
 class App extends React.Component {
