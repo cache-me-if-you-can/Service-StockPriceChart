@@ -1,6 +1,7 @@
+const faker = require('faker');
+
 const db = require('./index.js');
 const PriceDataDay = require('./PriceDataDay.js');
-const faker = require('faker');
 
 const sampleStockPrice = () => {
   const result = [];
