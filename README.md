@@ -39,4 +39,4 @@ npm install
 
 - [ ] Run `npm install` inside the directory to install dependencies.
 - [ ] Ensure that the MongoDB process is running on your computer (`mongod`).
-- [ ] Create the database by running `npm run db:setup`
+- [ ] Create the database by running `npm run seed`
