@@ -8,7 +8,7 @@ const sampleStockPrice = () => {
   for (let hour = 9; hour < 18; hour += 1) {
     for (let minute = 0; minute <= 60; minute += 5) {
       const symbol = 'MMMM';
-      const randomPrice = Number(faker.finance.amount(1, 100, 2));
+      const randomPrice = Number(faker.finance.amount(10, 100, 2));
       const d = new Date(2018, 9, 25, hour, minute);
       result.push({
         symbol,

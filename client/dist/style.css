@@ -6,12 +6,59 @@
 
 body {
   font-family: 'DIN Pro';
+  background: white;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto 10% 10%;
+  align-items: center;
+  justify-items: end;
+}
+
+.name {
+  justify-self: left;
+}
+
+.name h1 {
+  margin: 0;
+}
+
+a.tag:link, a.tag:visited, a.tag:active {
+  color: #171718;
+  text-decoration: none;
+}
+
+a.tag:hover {
+  display: grid;
+  justify-items: start;
+  border-radius: 17px;
+  background-color: #171718;
+  color: white;
+  fill: white;
+}
+
+.tag {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  line-height: 19px;
+  margin: 0;
+  border-radius: 17px;
+  height: 50%;
+  width: 90%;
+  background-color: #f4f4f5;
+}
+
+.tag-icon {
+  display: grid;
+  align-self: end;
+  justify-self: end;
 }
 
 .chart {
-  background: white;
-  width: 500px;
-  height: 100px;
   border-left: 1px dotted #555;
   border-bottom: 1px dotted #555;
 }
