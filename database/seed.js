@@ -26,13 +26,15 @@ const sampleStockPrice = () => {
 const sampleStockPrice2 = () => {
   const result = [];
 
-  for (let hour = 9; hour < 18; hour += 1) {
+  for (let hour = 9; hour <= 18; hour += 1) {
     for (let minute = 0; minute <= 60; minute += 5) {
       const symbol = faker.finance.currencyCode();
       const companyName = faker.company.companyName();
       const randomOwner = faker.random.number({ min: 10, max: 1000 });
       const randomPrice = Number(faker.finance.amount(10, 1000, 2));
-      const d = new Date(2018, 9, 25, hour, minute);
+      let d = new Date(2018, 9, 25, hour, minute);
+      d = d.toString();
+
       result.push({
         symbol,
         name: companyName,

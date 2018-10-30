@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Chart from './components/chart.jsx';
-
-const moment = require('moment');
-
+import PriceChart from './components/pricechart.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +17,8 @@ class App extends React.Component {
       }],
     }
 
-    this.handleGet.bind(this);
+    this.handleGet = this.handleGet.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +30,13 @@ class App extends React.Component {
       .then(response => response.json())
       .then(priceData => this.setState({ priceData }))
       .catch(error => console.log(error));
+  }
+
+  handlePriceChange(e) {
+    if (e.isTooltipActive) {
+      const price = `$${e.activePayload[0].value}`;
+      document.getElementById("main-price").innerHTML = price;
+    }
   }
 
   render() {
@@ -60,7 +66,8 @@ class App extends React.Component {
             </span>
           </a>
         </div>
-        <div className="price">$100</div>
+        <div id="main-price">$100</div>
+        <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />
         <Chart state={this.state} />
       </div>
     )
