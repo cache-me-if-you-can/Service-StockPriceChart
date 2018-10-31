@@ -15,37 +15,54 @@ const Chart = (props) => {
 
   let renderThis = '';
   let xAxis = 0;
+  const coordinates = [];
+
   props.state.priceData.forEach((ele, i) => {
+    let circleObj = {};
     if (i !== 0) {
       xAxis += Math.round(xInterval * 1000) / 1000;
     }
-
-    let xAxisStr = xAxis.toString();
-    let yAxis = convertToYAxis(ele.price);
+    const xAxisStr = xAxis.toString();
+    const yAxis = convertToYAxis(ele.price);
+    circleObj.cx = xAxis;
+    circleObj.cy = yAxis;
+    circleObj.date = ele.date;
+    circleObj.price = ele.price;
+    coordinates.push(circleObj);
     renderThis += xAxisStr + ',' + yAxis.toString() + ' ';
   })
 
-  console.log(props.state.priceData[0]);
-
-  function myFunction(e) {
-    const x = e.clientX;
-    const y = e.clientY;
-    const coor = "Coordinates: (" + x + "," + y + ")";
-    document.getElementById("demo").innerHTML = coor;
+  function handleMouseEnter(e) {
+    const coorX = e.target.getAttribute('x');
+    const circleElement = document.getElementById(coorX);
+    circleElement.classList.remove('circle');
+    circleElement.classList.add('circleSelected');
   }
 
-  function clearCoor() {
-    document.getElementById("demo").innerHTML = "";
+  function handleMouseOut(e) {
+    const coorX = e.target.getAttribute('x');
+    const circleElement = document.getElementById(coorX);
+    circleElement.classList.remove('circleSelected');
+    circleElement.classList.add('circle');
   }
+
+  const barEventListener = coordinates.map((ele, i) => {
+    return (
+      <g key={i}>
+        <rect className="rectangle" width={xInterval} height="100%" x={ele.cx} onMouseEnter={(e) => handleMouseEnter(e)} onMouseOut={(e) => handleMouseOut(e)} />
+        <path strokeWidth="1"  />
+        <circle id={ele.cx} stroke="#FFFFFF" fill="#cea774" strokeWidth="2" className="circle" cx={ele.cx} cy={ele.cy} data-value={ele.price} r="5" />
+      </g>
+    )
+  });
+
 
 
   return (
-    <div onMouseMove={(e) => myFunction(e)} onMouseOut={(e) => clearCoor(e)}>
-      <svg viewBox={viewBox} className="chart">
+    <div>
+      <svg viewBox={viewBox} className="chart" >
         <polyline fill="none" stroke="#cea774" strokeWidth="2" points={renderThis} />
-        <g class="data" data-setname="Our first data set">
-          <circle cx="90" cy="192" data-value="7.2" r="4"></circle>
-        </g>
+        {barEventListener}
       </svg>
       <p id="demo"></p>
    </div>
