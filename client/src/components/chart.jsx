@@ -5,11 +5,11 @@ const Chart = (props) => {
   const viewBoxHeight = 200;
   const viewBox = `0 0 ${viewBoxWidth} ${viewBoxHeight}`;
   const totalXPoints = (18 - 9) * 60 / 5;
-  const xInterval = (viewBoxWidth - 50) / totalXPoints;
+  const xInterval = (viewBoxWidth - 110) / totalXPoints;
 
   function convertToYAxis(input) {
-    const length = Math.floor(props.state.priceData[0].price).toString().length;
-    const base = Math.pow(10, length);
+    const digits = Math.floor(props.state.priceData[0].price).toString().length;
+    const base = Math.pow(10, digits);
     return viewBoxHeight - (input / base * viewBoxHeight);
   };
 
@@ -29,7 +29,7 @@ const Chart = (props) => {
     circleObj.date = ele.date;
     circleObj.price = ele.price;
     coordinates.push(circleObj);
-    renderThis += xAxisStr + ',' + yAxis.toString() + ' ';
+    renderThis += `${xAxisStr},${yAxis.toString()} `;
   })
 
   function handleMouseEnter(e) {
@@ -50,23 +50,21 @@ const Chart = (props) => {
     return (
       <g key={i}>
         <rect className="rectangle" width={xInterval} height="100%" x={ele.cx} onMouseEnter={(e) => handleMouseEnter(e)} onMouseOut={(e) => handleMouseOut(e)} />
-        <path strokeWidth="1"  />
+        <path strokeWidth="1" />
         <circle id={ele.cx} stroke="#FFFFFF" fill="#cea774" strokeWidth="2" className="circle" cx={ele.cx} cy={ele.cy} data-value={ele.price} r="5" />
       </g>
-    )
+    );
   });
-
 
 
   return (
     <div>
       <svg viewBox={viewBox} className="chart" >
-        <polyline fill="none" stroke="#cea774" strokeWidth="2" points={renderThis} />
+        <polyline fill="none" stroke="#cea774" strokeWidth="1" points={renderThis} />
         {barEventListener}
       </svg>
-      <p id="demo"></p>
-   </div>
-  )
+    </div>
+  );
 };
 
 export default Chart;

@@ -1,23 +1,20 @@
-@font-face {
-  font-family: 'DIN Pro';
-  font-style: normal;
-  src: url(https://d2ue93q3u507c2.cloudfront.net/assets/generated_assets/e0be9bd5e372b2c379893b776e7b2b96.otf) format("opentype");
-}
-
 body {
   font-family: 'DIN Pro';
   background: white;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
 }
 
 .header {
   display: grid;
-  grid-template-columns: auto 10% 10%;
+  grid-template-columns: auto 70px 70px;
+  column-gap: 9px;
   align-items: center;
-  justify-items: end;
-}
-
-.name {
-  justify-self: left;
 }
 
 .name h1 {
@@ -39,28 +36,70 @@ a.tag:hover {
 }
 
 .tag {
-  display: grid;
-  grid-template-columns: 45% 55%;
+  display: block;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.25px;
   line-height: 19px;
   margin: 0;
   border-radius: 17px;
-  height: 50%;
-  width: 90%;
+  height: 70%;
+  width: 94%;
   background-color: #f4f4f5;
 }
 
 .tag-icon {
-  display: grid;
-  align-self: end;
-  justify-self: end;
+  display: block;
+  position: relative;
+  top: 7px;
+  left: 10px;
+  width: 12px;
+}
+
+.inner-tag {
+  display: block;
+  position: relative;
+  top: -17px;
+  left: 27px;
+  width: 12px;
+}
+
+a.tag .tag-tooltip {
+  visibility: hidden;
+  grid-area: tooltip;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  right: 20px;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity .25s;
+}
+
+a.tag:hover .tag-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+#main-price {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  line-height: 42px;
 }
 
 .chart {
   border-left: 1px dotted #555;
   border-bottom: 1px dotted #555;
+  margin-top: 10px;
 }
 
 .rectangle {
@@ -82,4 +121,34 @@ a.tag:hover {
 .circleSelected {
   fill-opacity: 1;
   stroke-opacity: 1;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: repeat(6, 20px);
+  justify-items: center;
+  column-gap: 10px;
+  border-bottom: 1px solid #f4f4f5;
+  padding-bottom: 1px;
+}
+
+.nav-selected {
+  /* display: block; */
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  color: #21ce99;
+  border-bottom: 2px solid #21ce99;
+  padding-bottom: 11px;
+}
+
+.nav-unselected {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  color: #171718;
+}
+
+.nav-unselected:hover{
+  color: #21ce99;
 }
