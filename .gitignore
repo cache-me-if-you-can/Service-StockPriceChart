@@ -24,6 +24,7 @@ coverage
 build/
 
 chart.jsx
+chart.test.js
 bundle.js
 config.js
 sample.css

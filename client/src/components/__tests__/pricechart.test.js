@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from '../../setupTests';
-import Chart from '../chart';
+import PriceChart from '../pricechart';
 
-describe('Chart Component Tests', () => {
+describe('PriceChart Component Tests', () => {
   const state = {
     priceData: [
       {
@@ -18,17 +18,17 @@ describe('Chart Component Tests', () => {
   };
 
   it('Renders react component', () => {
-    const wrapper = shallow(<Chart state={state} />);
+    const wrapper = shallow(<PriceChart state={state} />);
     expect(wrapper.find('div')).toBeDefined();
   });
 
   it('should render rectangle correctly in svg', () => {
-    const wrapper = shallow(<Chart state={state} />);
+    const wrapper = shallow(<PriceChart state={state} />);
     expect(wrapper.exists('.rectangle')).toEqual(true);
   });
 
   it('should get price data from state', () => {
-    const wrapper = shallow(<Chart state={state} />);
+    const wrapper = shallow(<PriceChart state={state} />);
     expect(wrapper.find({ 'data-value': 88.02 }));
   });
 });

@@ -3,18 +3,13 @@ import { shallow } from '../../setupTests';
 import App from '../app';
 
 describe('App Component Tests', () => {
-  const state = {
-    priceData: [
-      {
-        date: 'Thu Oct 25 2018 09:00:00 GMT-0700 (PDT)',
-        name: 'Apple',
-        owner: 4,
-        price: 88.02,
-        rating: 4,
-        symbol: 'AAPL',
-      },
-    ],
-  };
+  let app;
+
+  beforeEach(() => {
+    app = renderIntoDocument(
+      <App searchYouTube={() => { }} />
+    );
+  });
 
   it('Renders react component', () => {
     const wrapper = shallow(<App />);

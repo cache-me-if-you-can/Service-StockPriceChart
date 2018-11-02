@@ -2,7 +2,7 @@ import React from 'react';
 import { LineChart, Line, Tooltip } from 'recharts';
 
 const PriceChart = (props) => {
-  const viewBoxWidth = screen.width * 0.95;
+  const viewBoxWidth = screen.width * 0.96;
   const viewBoxHeight = 300;
   const data = [];
 
@@ -14,7 +14,7 @@ const PriceChart = (props) => {
 
   return (
     <div>
-      <LineChart width={viewBoxWidth} height={viewBoxHeight} data={data} onMouseMove={(e) => props.handlePriceChange(e)}>
+      <LineChart width={viewBoxWidth} height={viewBoxHeight} data={data} onMouseMove={e => props.handlePriceChange(e)}>
         <Tooltip />
         <Line
           type="monotone"
