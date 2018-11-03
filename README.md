@@ -1,6 +1,6 @@
 # Service - stockPriceChart
 
-> Project description
+> Stock Price Chart for the robinhood.com clone.
 
 ## Related Projects
 
@@ -14,10 +14,6 @@
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
 
 ## Requirements
 
