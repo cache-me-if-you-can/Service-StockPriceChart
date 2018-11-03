@@ -1,11 +1,7 @@
-body {
-  font-family: 'DIN Pro';
+.container {
   background: white;
   font-size: 13px;
   font-weight: 300;
-}
-
-.container {
   width: 100%;
   height: 100%;
 }
@@ -48,7 +44,7 @@ a.tag:hover {
   background-color: #f4f4f5;
 }
 
-.tag-icon {
+.tagIcon {
   display: block;
   position: relative;
   top: 7px;
@@ -56,7 +52,7 @@ a.tag:hover {
   width: 12px;
 }
 
-.inner-tag {
+.innerTag {
   display: block;
   position: relative;
   top: -17px;
@@ -64,7 +60,7 @@ a.tag:hover {
   width: 12px;
 }
 
-a.tag .tag-tooltip {
+a.tag .tagTooltip {
   visibility: hidden;
   grid-area: tooltip;
   width: 160px;
@@ -84,12 +80,12 @@ a.tag .tag-tooltip {
   transition: opacity .25s;
 }
 
-a.tag:hover .tag-tooltip {
+a.tag:hover .tagTooltip {
   visibility: visible;
   opacity: 1;
 }
 
-#main-price {
+#mainPrice {
   font-size: 36px;
   font-weight: 400;
   letter-spacing: -0.7px;
@@ -132,7 +128,7 @@ a.tag:hover .tag-tooltip {
   padding-bottom: 1px;
 }
 
-.nav-selected {
+.navSelected {
   /* display: block; */
   cursor: pointer;
   font-size: 15px;
@@ -142,13 +138,13 @@ a.tag:hover .tag-tooltip {
   padding-bottom: 11px;
 }
 
-.nav-unselected {
+.navUnselected {
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;
   color: #171718;
 }
 
-.nav-unselected:hover{
+.navUnselected:hover{
   color: #21ce99;
 }

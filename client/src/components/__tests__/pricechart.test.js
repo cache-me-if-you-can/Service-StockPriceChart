@@ -24,7 +24,7 @@ describe('PriceChart Component Tests', () => {
 
   it('should render rectangle correctly in svg', () => {
     const wrapper = shallow(<PriceChart state={state} />);
-    expect(wrapper.exists('.rectangle')).toEqual(true);
+    expect(wrapper.exists('Line')).toEqual(true);
   });
 
   it('should get price data from state', () => {

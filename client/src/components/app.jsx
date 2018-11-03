@@ -1,5 +1,6 @@
 import React from 'react';
 import PriceChart from './pricechart.jsx';
+import styles from './style.css';
 
 class App extends React.Component {
   constructor() {
@@ -52,7 +53,7 @@ class App extends React.Component {
   handlePriceChange(e) {
     if (e.isTooltipActive) {
       const price = `$${e.activePayload[0].value}`;
-      document.getElementById("main-price").innerHTML = price;
+      document.getElementById(styles.mainPrice).innerHTML = price;
     }
   }
 
@@ -90,73 +91,72 @@ class App extends React.Component {
     }
   }
 
-
   render() {
     const { name, rating, owner } = this;
 
     return (
-      <div className="container">
-        <div className="header">
-          <div className="name"><h1>{name}</h1></div>
-          <a to="analyst-ratings" className="tag" href="#">
-            <span className="tag-icon">
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.name}><h1>{name}</h1></div>
+          <a to="analyst-ratings" className={styles.tag} href="#">
+            <span className={styles.tagIcon}>
               <svg width="16" height="16" viewBox="0 0 28 28"><g fillRule="evenodd" transform="translate(-4 -4)"><path id="tag-a" d="M20.99975,8 C20.44775,8 19.99975,7.552 19.99975,7 C19.99975,6.448 20.44775,6 20.99975,6 C21.55175,6 21.99975,6.448 21.99975,7 C21.99975,7.552 21.55175,8 20.99975,8 M21.99975,4 L14.82775,4 C14.29775,4 13.78875,4.21 13.41375,4.585 L4.58575,13.414 C3.80475,14.195 3.80475,15.461 4.58575,16.242 L11.75675,23.414 C12.53775,24.195 13.80475,24.195 14.58575,23.414 L23.41375,14.586 C23.78875,14.211 23.99975,13.702 23.99975,13.172 L23.99975,6 C23.99975,4.896 23.10375,4 21.99975,4"></path></g></svg>
             </span>
-            <span className="inner-tag">
+            <span className={styles.innerTag}>
               {rating}
               %
             </span>
-            <span className="tag-tooltip">{rating}% of analysts agree that {name} is a buy.</span>
+            <span className={styles.tagTooltip}>{rating}% of analysts agree that {name} is a buy.</span>
           </a>
-          <a to="price-paid" className="tag" href="#">
-            <span className="tag-icon">
+          <a to="price-paid" className={styles.tag} href="#">
+            <span className={styles.tagIcon}>
               <svg width="16" height="16" viewBox="0 0 18 20"><g fillRule="evenodd"><ellipse cx="6" cy="3.5" rx="3.333" ry="3.5"></ellipse><path d="M4.224,8.4 L7.776,8.4 L7.776,8.4 C10.1088508,8.4 12,10.2911492 12,12.624 L12,14 L0,14 L0,12.624 L8.8817842e-16,12.624 C6.02486595e-16,10.2911492 1.89114922,8.4 4.224,8.4 Z"></path></g></svg>
             </span>
-            <div className="inner-tag">
+            <div className={styles.innerTag}>
               {owner}
             </div>
-            <span className="tag-tooltip">{owner} people own {name} on our website.</span>
+            <span className={styles.tagTooltip}>{owner} people own {name} on our website.</span>
           </a>
         </div>
-        <div id="main-price">${this.state.priceData[0].price}</div>
+        <div id={styles.mainPrice}>${this.state.priceData[0].price}</div>
         {/* <Chart state={this.state} /> */}
-        <div className="main">
+        <div>
           {this.renderView()}
         </div>
-        <div className="nav">
+        <div className={styles.nav}>
           <span className={this.state.view === '1d'
-            ? 'nav-selected'
-            : 'nav-unselected'}
+            ? styles.navSelected
+            : styles.navUnselected}
             onClick={(e) => this.changeView(e, '1d')}>
             1D
           </span>
           <span className={this.state.view === '1w'
-            ? 'nav-selected'
-            : 'nav-unselected'}
+            ? styles.navSelected
+            : styles.navUnselected}
             onClick={(e) => this.changeView(e, '1w')}>
             1W
           </span>
           <span className={this.state.view === '1m'
-            ? 'nav-selected'
-            : 'nav-unselected'}
+            ? styles.navSelected
+            : styles.navUnselected}
             onClick={(e) => this.changeView(e, '1m')}>
             1M
           </span>
           <span className={this.state.view === '3m'
-            ? 'nav-selected'
-            : 'nav-unselected'}
+            ? styles.navSelected
+            : styles.navUnselected}
             onClick={(e) => this.changeView(e, '3m')}>
             3M
           </span>
           <span className={this.state.view === '1y'
-            ? 'nav-selected'
-            : 'nav-unselected'}
+            ? styles.navSelected
+            : styles.navUnselected}
             onClick={(e) => this.changeView(e, '1y')}>
             1Y
           </span>
           <span className={this.state.view === '5y'
-            ? 'nav-selected'
-            : 'nav-unselected'}
+            ? styles.navSelected
+            : styles.navUnselected}
             onClick={(e) => this.changeView(e, '5y')}>
             5Y
           </span>
