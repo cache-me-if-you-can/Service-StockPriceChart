@@ -1,7 +1,0 @@
-{
-    "extends": "airbnb",
-    "rules": {
-        "no-console": "off"
-        // console.log is used on the server side to indicate that the server is listening
-    }
-}

@@ -4,10 +4,10 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/TSON-RH/Service-People-Also-Bought
+  - https://github.com/TSON-RH/price-volume-chart-service
+  - https://github.com/TSON-RH/buy-service
+  - https://github.com/TSON-RH/Service-StockPriceChart
 
 ## Table of Contents
 
