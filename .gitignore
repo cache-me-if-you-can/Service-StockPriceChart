@@ -23,5 +23,8 @@ coverage
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 
+chart.jsx
+chart.test.js
 bundle.js
 config.js
+sample.css

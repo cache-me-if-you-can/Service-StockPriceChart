@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const priceDataSchema = new mongoose.Schema({
+  id: Number,
   symbol: String,
   name: String,
   price: Number,
@@ -14,5 +15,10 @@ const priceDataSchema = new mongoose.Schema({
 
 
 const PriceDataDay = mongoose.model('PriceDataDay', priceDataSchema);
+const PriceDataWeek = mongoose.model('PriceDataWeek', priceDataSchema);
 
-module.exports = PriceDataDay;
+
+module.exports = {
+  PriceDataDay,
+  PriceDataWeek,
+};

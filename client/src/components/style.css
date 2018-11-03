@@ -1,0 +1,150 @@
+.container {
+  background: white;
+  font-size: 13px;
+  font-weight: 300;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto 70px 70px;
+  column-gap: 9px;
+  align-items: center;
+}
+
+.name h1 {
+  margin: 0;
+}
+
+a.tag:link, a.tag:visited, a.tag:active {
+  color: #171718;
+  text-decoration: none;
+}
+
+a.tag:hover {
+  display: grid;
+  justify-items: start;
+  border-radius: 17px;
+  background-color: #171718;
+  color: white;
+  fill: white;
+}
+
+.tag {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  line-height: 19px;
+  margin: 0;
+  border-radius: 17px;
+  height: 70%;
+  width: 94%;
+  background-color: #f4f4f5;
+}
+
+.tagIcon {
+  display: block;
+  position: relative;
+  top: 7px;
+  left: 10px;
+  width: 12px;
+}
+
+.innerTag {
+  display: block;
+  position: relative;
+  top: -17px;
+  left: 27px;
+  width: 12px;
+}
+
+a.tag .tagTooltip {
+  visibility: hidden;
+  grid-area: tooltip;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  right: 20px;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity .25s;
+}
+
+a.tag:hover .tagTooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+#mainPrice {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  line-height: 42px;
+}
+
+.chart {
+  border-left: 1px dotted #555;
+  border-bottom: 1px dotted #555;
+  margin-top: 10px;
+}
+
+.rectangle {
+  fill-opacity: 0;
+}
+
+.rectangle:hover {
+  stroke: lightgray;
+  stroke-width: 1;
+  stroke-dashoffset: 1;
+}
+
+
+.circle {
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
+.circleSelected {
+  fill-opacity: 1;
+  stroke-opacity: 1;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: repeat(6, 20px);
+  justify-items: center;
+  column-gap: 10px;
+  border-bottom: 1px solid #f4f4f5;
+  padding-bottom: 1px;
+}
+
+.navSelected {
+  /* display: block; */
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  color: #21ce99;
+  border-bottom: 2px solid #21ce99;
+  padding-bottom: 11px;
+}
+
+.navUnselected {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  color: #171718;
+}
+
+.navUnselected:hover{
+  color: #21ce99;
+}
