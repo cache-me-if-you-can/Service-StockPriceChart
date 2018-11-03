@@ -10,6 +10,10 @@
     "test": "jest --coverage"
   },
   "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
     "setupFiles": [
       "./client/src/setupTests.js"
     ],
@@ -39,7 +43,8 @@
     "react-test-renderer": "^16.6.0",
     "regenerator-runtime": "^0.12.1",
     "webpack": "^2.2.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "identity-obj-proxy": "^3.0.0"
   },
   "dependencies": {
     "body-parser": "^1.17.0",

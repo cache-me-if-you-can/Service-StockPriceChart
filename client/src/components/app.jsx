@@ -4,8 +4,8 @@ import Chart from './chart.jsx';
 import styles from './style.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.id = 0;
     this.name = '';
     this.rating = '';
