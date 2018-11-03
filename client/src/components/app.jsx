@@ -1,5 +1,6 @@
 import React from 'react';
 import PriceChart from './pricechart.jsx';
+import Chart from './chart.jsx';
 import styles from './style.css';
 
 class App extends React.Component {
@@ -119,7 +120,6 @@ class App extends React.Component {
           </a>
         </div>
         <div id={styles.mainPrice}>${this.state.priceData[0].price}</div>
-        {/* <Chart state={this.state} /> */}
         <div>
           {this.renderView()}
         </div>
@@ -161,6 +161,7 @@ class App extends React.Component {
             5Y
           </span>
         </div>
+        {/* <Chart state={this.state} /> */}
       </div>
     );
   }
