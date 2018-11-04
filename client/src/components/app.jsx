@@ -51,15 +51,12 @@ class App extends React.Component {
       .catch(error => console.log(error));
   }
 
-  handlePriceChange(e) {
-    if (e.isTooltipActive) {
-      const price = `$${e.activePayload[0].value}`;
-      document.getElementById(styles.mainPrice).innerHTML = price;
-    }
+  handlePriceChange(price) {
+    price = `$${price}`
+    document.getElementById(styles.mainPrice).innerHTML = price;
   }
 
-  changeView(e, view) {
-    e.preventDefault();
+  changeView(view) {
     if (view === '1w') {
       this.handleGetWeek(this.id + 1, view);
     } else if (view === '1m') {
@@ -68,8 +65,6 @@ class App extends React.Component {
       this.handleGetWeek(this.id + 3, view);
     } else if (view === '1y') {
       this.handleGetWeek(this.id + 4, view);
-    } else if (view === '5y') {
-      this.handleGetWeek(this.id + 5, view);
     } else {
       this.handleGetDay(this.id, '1d');
     }
@@ -77,18 +72,32 @@ class App extends React.Component {
 
   renderView() {
     const { view } = this.state;
+    // if (view === '1d') {
+    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+    // } else if (view === '1w') {
+    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+    // } else if (view === '1m') {
+    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+    // } else if (view === '3m') {
+    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+    // } else if (view === '1y') {
+    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+    // } else if (view === '5y') {
+    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+    // }
+
     if (view === '1d') {
-      return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
     } else if (view === '1w') {
-      return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
     } else if (view === '1m') {
-      return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
     } else if (view === '3m') {
-      return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
     } else if (view === '1y') {
-      return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
     } else if (view === '5y') {
-      return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
+      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
     }
   }
 
@@ -127,41 +136,34 @@ class App extends React.Component {
           <span className={this.state.view === '1d'
             ? styles.navSelected
             : styles.navUnselected}
-            onClick={(e) => this.changeView(e, '1d')}>
+            onClick={() => this.changeView('1d')}>
             1D
           </span>
           <span className={this.state.view === '1w'
             ? styles.navSelected
             : styles.navUnselected}
-            onClick={(e) => this.changeView(e, '1w')}>
+            onClick={() => this.changeView('1w')}>
             1W
           </span>
           <span className={this.state.view === '1m'
             ? styles.navSelected
             : styles.navUnselected}
-            onClick={(e) => this.changeView(e, '1m')}>
+            onClick={() => this.changeView('1m')}>
             1M
           </span>
           <span className={this.state.view === '3m'
             ? styles.navSelected
             : styles.navUnselected}
-            onClick={(e) => this.changeView(e, '3m')}>
+            onClick={() => this.changeView('3m')}>
             3M
           </span>
           <span className={this.state.view === '1y'
             ? styles.navSelected
             : styles.navUnselected}
-            onClick={(e) => this.changeView(e, '1y')}>
+            onClick={() => this.changeView('1y')}>
             1Y
           </span>
-          <span className={this.state.view === '5y'
-            ? styles.navSelected
-            : styles.navUnselected}
-            onClick={(e) => this.changeView(e, '5y')}>
-            5Y
-          </span>
         </div>
-        {/* <Chart state={this.state} /> */}
       </div>
     );
   }

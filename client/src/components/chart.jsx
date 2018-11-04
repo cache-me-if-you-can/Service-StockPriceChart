@@ -1,21 +1,23 @@
 import React from 'react';
 import styles from './style.css';
 
+const moment = require('moment');
+
 const Chart = (props) => {
   const viewBoxWidth = 630;
   const viewBoxHeight = 200;
   const viewBox = `0 0 ${viewBoxWidth} ${viewBoxHeight}`;
   const totalXPoints = (18 - 9) * 60 / 5;
-  const xInterval = (viewBoxWidth - 110) / totalXPoints;
+  const xInterval = (viewBoxWidth - 120) / totalXPoints; //130 check line 20
 
   function convertToYAxis(input) {
     const digits = Math.floor(props.state.priceData[0].price).toString().length;
     const base = Math.pow(10, digits);
-    return viewBoxHeight - (input / base * viewBoxHeight);
-  };
+    return (viewBoxHeight - 10) - (input / base * viewBoxHeight) * 0.9;
+  }
 
   let renderThis = '';
-  let xAxis = 0;
+  let xAxis = 10; //20
   const coordinates = [];
 
   props.state.priceData.forEach((ele, i) => {
@@ -36,23 +38,26 @@ const Chart = (props) => {
   function handleMouseEnter(e) {
     const coorX = e.target.getAttribute('x');
     const circleElement = document.getElementById(coorX);
-    circleElement.classList.remove(styles.circle);
-    circleElement.classList.add(styles.circleSelected);
+    props.handlePriceChange(circleElement.getAttribute('data-value'));
   }
-
-  function handleMouseOut(e) {
-    const coorX = e.target.getAttribute('x');
-    const circleElement = document.getElementById(coorX);
-    circleElement.classList.remove(styles.circleSelected);
-    circleElement.classList.add(styles.circle);
-  }
+  // onMouseEnter = {(e) => handleMouseEnter(e)} onMouseOut = {(e) => handleMouseOut(e)}
+  // function handleMouseOut(e) {
+  //   const coorX = e.target.getAttribute('x');
+  //   const circleElement = document.getElementById(coorX);
+  //   circleElement.classList.remove(styles.circleSelected);
+  //   circleElement.classList.add(styles.circle);
+  // }
 
   const barEventListener = coordinates.map((ele, i) => {
+
     return (
       <g key={i}>
-        <rect className={styles.rectangle} width={xInterval} height="100%" x={ele.cx} onMouseEnter={(e) => handleMouseEnter(e)} onMouseOut={(e) => handleMouseOut(e)} />
-        <path strokeWidth="1" />
-        <circle id={ele.cx} stroke="#FFFFFF" fill="#cea774" strokeWidth="2" className={styles.circle} cx={ele.cx} cy={ele.cy} data-value={ele.price} r="5" />
+        <rect className={styles.rectangle} width={xInterval} height="100%" x={ele.cx} onMouseEnter={(e) => handleMouseEnter(e)} />
+        <circle id={ele.cx} stroke="#FFFFFF" strokeWidth="2" className={styles.circle} cx={ele.cx} cy={ele.cy} data-value={ele.price} r="4" />
+        <text className={styles.tooltip} x={ele.cx - 17} y="10">
+          {moment(ele.date).format('h:mm A')}
+        </text>
+        <line className={styles.timeLine} x1={ele.cx} y1="15" x2={ele.cx} y2={viewBoxHeight - 10} />
       </g>
     );
   });
