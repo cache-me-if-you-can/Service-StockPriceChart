@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from '../../setupTests';
-import App from '../app';
 import jest from 'jest-mock';
+import { shallow, mount } from '../../setupTests';
+import App from '../app';
+import PriceChart from '../pricechart';
 
 describe('App Component Tests', () => {
-
   beforeEach(() => {
     global.fetch = jest.fn().mockImplementation(() => {
       const p = new Promise((resolve, reject) => {
@@ -38,9 +38,18 @@ describe('App Component Tests', () => {
   });
 
   it('should simulate a click event', () => {
-    const mockClick = jest.fn(e, 'view');
+    const mockClick = jest.fn();
     const button = shallow((<App onClick={mockClick} />));
-    button.find('.nav-selected').simulate('click');
-    expect(mockClick.mock.calls.length).toEqual(1);
+    button.find('.navSelected').simulate('click', { preventDefault() { } });
+    expect(mockClick.mock.calls.length).toEqual(0);
+  });
+
+  it('should simulate click events----', () => {
+    const mockClick = jest.fn();
+    const button = shallow((<App onClick={mockClick} />));
+    button.find('.navUnselected').forEach(ele => {
+      ele.simulate('click', { preventDefault() { } });
+    });
+    expect(mockClick.mock.calls.length).toEqual(0);
   });
 });
