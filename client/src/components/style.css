@@ -31,7 +31,7 @@ a.tag:hover {
   fill: white;
 }
 
-.tag {
+a.tag {
   display: block;
   font-size: 13px;
   font-weight: 500;
@@ -93,8 +93,6 @@ a.tag:hover .tagTooltip {
 }
 
 .chart {
-  border-left: 1px dotted #555;
-  border-bottom: 1px dotted #555;
   margin-top: 10px;
 }
 
@@ -102,21 +100,39 @@ a.tag:hover .tagTooltip {
   fill-opacity: 0;
 }
 
-.rectangle:hover {
-  stroke: lightgray;
-  stroke-width: 1;
-  stroke-dashoffset: 1;
-}
-
-
 .circle {
-  fill-opacity: 0;
-  stroke-opacity: 0;
+  visibility: hidden;
+  stroke: #FFFFFF;
+  fill: #cea774;
 }
 
-.circleSelected {
-  fill-opacity: 1;
-  stroke-opacity: 1;
+.tooltip {
+  visibility: hidden;
+  font-size: 8px;
+  fill: #8c8c8e;
+  font-weight: bold;
+}
+
+.timeLine {
+  visibility: hidden;
+  stroke: #cbcbcd;
+  stroke-width: 1;
+}
+
+.rectangle:hover ~ .circle {
+  visibility: visible;
+}
+
+.rectangle:hover ~ .tooltip {
+  visibility: visible;
+}
+
+.rectangle:hover ~ .timeLine {
+  visibility: visible;
+}
+
+.rectangle:hover ~ .circle {
+  visibility: visible;
 }
 
 .nav {
@@ -129,7 +145,6 @@ a.tag:hover .tagTooltip {
 }
 
 .navSelected {
-  /* display: block; */
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;
