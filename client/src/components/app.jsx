@@ -25,7 +25,6 @@ class App extends React.Component {
     this.handleGetWeek = this.handleGetWeek.bind(this);
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.changeView = this.changeView.bind(this);
-    this.renderView = this.renderView.bind(this);
   }
 
   componentDidMount() {
@@ -70,37 +69,6 @@ class App extends React.Component {
     }
   }
 
-  renderView() {
-    const { view } = this.state;
-    // if (view === '1d') {
-    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    // } else if (view === '1w') {
-    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    // } else if (view === '1m') {
-    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    // } else if (view === '3m') {
-    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    // } else if (view === '1y') {
-    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    // } else if (view === '5y') {
-    //   return <PriceChart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    // }
-
-    if (view === '1d') {
-      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    } else if (view === '1w') {
-      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    } else if (view === '1m') {
-      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    } else if (view === '3m') {
-      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    } else if (view === '1y') {
-      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    } else if (view === '5y') {
-      return <Chart state={this.state} handlePriceChange={this.handlePriceChange} />;
-    }
-  }
-
   render() {
     const { name, rating, owner } = this;
 
@@ -128,10 +96,10 @@ class App extends React.Component {
             <span className={styles.tagTooltip}>{owner} people own {name} on our website.</span>
           </a>
         </div>
-        <div id={styles.mainPrice}>${this.state.priceData[0].price}</div>
-        <div>
-          {this.renderView()}
+        <div id={styles.mainPrice}>
+          ${this.state.priceData[0].price}
         </div>
+        <Chart state={this.state} handlePriceChange={this.handlePriceChange} />
         <div className={styles.nav}>
           <span className={this.state.view === '1d'
             ? styles.navSelected

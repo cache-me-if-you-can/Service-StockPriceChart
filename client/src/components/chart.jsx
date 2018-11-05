@@ -8,7 +8,7 @@ const Chart = (props) => {
   const viewBoxHeight = 200;
   const viewBox = `0 0 ${viewBoxWidth} ${viewBoxHeight}`;
   const totalXPoints = (18 - 9) * 60 / 5;
-  const xInterval = (viewBoxWidth - 120) / totalXPoints; //130 check line 20
+  const xInterval = (viewBoxWidth - 120) / totalXPoints; // 130 check line 20
 
   function convertToYAxis(input) {
     const digits = Math.floor(props.state.priceData[0].price).toString().length;
@@ -17,7 +17,7 @@ const Chart = (props) => {
   }
 
   let renderThis = '';
-  let xAxis = 10; //20
+  let xAxis = 10; //  20
   const coordinates = [];
 
   props.state.priceData.forEach((ele, i) => {
@@ -41,9 +41,9 @@ const Chart = (props) => {
     props.handlePriceChange(circleElement.getAttribute('data-price'));
   }
 
-  const barEventListener = coordinates.map((ele, i) => {
+  const barEventListener = coordinates.map((ele) => {
     return (
-      <g key={i}>
+      <g key={ele.cx}>
         <rect className={styles.rectangle} width={xInterval} height="100%" x={ele.cx} onMouseEnter={(e) => handleMouseEnter(e)} />
         <circle id={ele.cx} stroke="#FFFFFF" strokeWidth="2" className={styles.circle} cx={ele.cx} cy={ele.cy} data-price={ele.price} r="4" />
         <text className={styles.tooltip} x={ele.cx - 20} y="10">

@@ -31,7 +31,7 @@ a.tag:hover {
   fill: white;
 }
 
-.tag {
+a.tag {
   display: block;
   font-size: 13px;
   font-weight: 500;
