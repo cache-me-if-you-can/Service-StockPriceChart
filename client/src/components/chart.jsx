@@ -13,7 +13,7 @@ const Chart = (props) => {
   function convertToYAxis(input) {
     const digits = Math.floor(props.state.priceData[0].price).toString().length;
     const base = Math.pow(10, digits);
-    return (viewBoxHeight - 10) - (input / base * viewBoxHeight) * 0.9;
+    return (viewBoxHeight - 17) - (input / base * viewBoxHeight) * 0.83;
   }
 
   let renderThis = '';
@@ -38,30 +38,21 @@ const Chart = (props) => {
   function handleMouseEnter(e) {
     const coorX = e.target.getAttribute('x');
     const circleElement = document.getElementById(coorX);
-    props.handlePriceChange(circleElement.getAttribute('data-value'));
+    props.handlePriceChange(circleElement.getAttribute('data-price'));
   }
-  // onMouseEnter = {(e) => handleMouseEnter(e)} onMouseOut = {(e) => handleMouseOut(e)}
-  // function handleMouseOut(e) {
-  //   const coorX = e.target.getAttribute('x');
-  //   const circleElement = document.getElementById(coorX);
-  //   circleElement.classList.remove(styles.circleSelected);
-  //   circleElement.classList.add(styles.circle);
-  // }
 
   const barEventListener = coordinates.map((ele, i) => {
-
     return (
       <g key={i}>
         <rect className={styles.rectangle} width={xInterval} height="100%" x={ele.cx} onMouseEnter={(e) => handleMouseEnter(e)} />
-        <circle id={ele.cx} stroke="#FFFFFF" strokeWidth="2" className={styles.circle} cx={ele.cx} cy={ele.cy} data-value={ele.price} r="4" />
-        <text className={styles.tooltip} x={ele.cx - 17} y="10">
-          {moment(ele.date).format('h:mm A')}
+        <circle id={ele.cx} stroke="#FFFFFF" strokeWidth="2" className={styles.circle} cx={ele.cx} cy={ele.cy} data-price={ele.price} r="4" />
+        <text className={styles.tooltip} x={ele.cx - 20} y="10">
+          {moment(ele.date).format('h:mm A')} ET
         </text>
         <line className={styles.timeLine} x1={ele.cx} y1="15" x2={ele.cx} y2={viewBoxHeight - 10} />
       </g>
     );
   });
-
 
   return (
     <div>

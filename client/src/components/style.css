@@ -108,7 +108,7 @@ a.tag:hover .tagTooltip {
 
 .tooltip {
   visibility: hidden;
-  font-size: 10px;
+  font-size: 8px;
   fill: #8c8c8e;
   font-weight: bold;
 }
