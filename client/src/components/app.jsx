@@ -31,7 +31,7 @@ class App extends React.Component {
     this.handleGetDay(this.id, '1d');
   }
 
-  handleGetDay(id, view) {
+  handleGetDay(id = 0, view) {
     fetch(`/api/symbol/${id}/day`)
       .then(response => response.json())
       .then((priceData) => {
