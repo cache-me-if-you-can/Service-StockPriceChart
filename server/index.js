@@ -35,6 +35,11 @@ app.get('/api/symbol/:id/week', (req, res) => {
   });
 });
 
+app.use('/stockprice', express.static(path.join(__dirname, '/../client/dist')));
+app.get('/stockprice/:id', (req, res) => {
+  res.status(200);
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
