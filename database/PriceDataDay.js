@@ -13,10 +13,8 @@ const priceDataSchema = new mongoose.Schema({
   date: String,
 });
 
-
 const PriceDataDay = mongoose.model('PriceDataDay', priceDataSchema);
 const PriceDataWeek = mongoose.model('PriceDataWeek', priceDataSchema);
-
 
 module.exports = {
   PriceDataDay,

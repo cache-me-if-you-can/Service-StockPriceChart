@@ -6,11 +6,11 @@ import styles from './style.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.id = 0;
     this.name = '';
     this.rating = '';
     this.owner = '';
     this.state = {
+      id: 0,
       view: '1d',
       priceData: [{
         symbol: '',
@@ -25,13 +25,23 @@ class App extends React.Component {
     this.handleGetWeek = this.handleGetWeek.bind(this);
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.changeView = this.changeView.bind(this);
+    this.handleRandom = this.handleRandom.bind(this);
   }
 
   componentDidMount() {
-    this.handleGetDay(this.id, '1d');
+    const id = this.handleRandom();
+    this.handleGetDay(id, '1d');
   }
 
-  handleGetDay(id = 0, view) {
+  handleRandom() {
+    const min = 0;
+    const max = 100;
+    const id = Math.floor(Math.random() * (max - min + 1)) + min;
+    this.setState({ id });
+    return id;
+  }
+
+  handleGetDay(id, view) {
     fetch(`/api/symbol/${id}/day`)
       .then(response => response.json())
       .then((priceData) => {
@@ -57,15 +67,15 @@ class App extends React.Component {
 
   changeView(view) {
     if (view === '1w') {
-      this.handleGetWeek(this.id + 1, view);
+      this.handleGetWeek(this.state.id + 1, view);
     } else if (view === '1m') {
-      this.handleGetWeek(this.id + 2, view);
+      this.handleGetWeek(this.state.id + 2, view);
     } else if (view === '3m') {
-      this.handleGetWeek(this.id + 3, view);
+      this.handleGetWeek(this.state.id + 3, view);
     } else if (view === '1y') {
-      this.handleGetWeek(this.id + 4, view);
+      this.handleGetWeek(this.state.id + 4, view);
     } else {
-      this.handleGetDay(this.id, '1d');
+      this.handleGetDay(this.state.id, '1d');
     }
   }
 
