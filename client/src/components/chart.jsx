@@ -17,7 +17,7 @@ const Chart = (props) => {
   }
 
   let renderThis = '';
-  let xAxis = 10; //  20
+  let xAxis = 20; //  20
   const coordinates = [];
 
   props.state.priceData.forEach((ele, i) => {
