@@ -2,18 +2,68 @@
 
 > Stock Price Chart for the robinhood.com clone.
 
-## Related Projects
-
-  - https://github.com/TSON-RH/Service-People-Also-Bought
-  - https://github.com/TSON-RH/price-volume-chart-service
-  - https://github.com/TSON-RH/buy-service
-  - https://github.com/TSON-RH/Service-StockPriceChart
-
 ## Table of Contents
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+
+## Usage
+
+### /api/symbol/:id/day
+#### GET
+res:
+```
+[
+    {
+        "_id": "5bec737689641dcdc5dea9f5",
+        "id": 1,
+        "symbol": "PHP",
+        "name": "Cremin - Goyette",
+        "price": 277.96,
+        "date": "Thu Oct 25 2018 09:00:00 GMT-0700 (Pacific Daylight Time)",
+        "__v": 0,
+        "rating": 4,
+        "owner": 506
+    },
+    ...
+]
+```
+#### POST
+req.body and res:
+```
+{
+    "symbol": "PHP",
+    "name": "Cremin - Goyette",
+    "price": 277.96,
+    "date": "Thu Oct 25 2018 09:00:00 GMT-0700 (Pacific Daylight Time)",
+    "__v": 0,
+    "rating": 4,
+    "owner": 506
+}
+```
+#### PUT
+req.body and res:
+```
+{
+    "symbol": "PHP",
+    "name": "Cremin - Goyette",
+    "price": 277.96,
+    "date": "Thu Oct 25 2018 09:00:00 GMT-0700 (Pacific Daylight Time)",
+    "__v": 0,
+    "rating": 4,
+    "owner": 506
+}
+```
+
+#### DELETE
+res:
+```
+{
+    "n": 1,
+    "ok": 1
+}
+```
 
 ## Requirements
 
