@@ -54,6 +54,7 @@
     "faker": "^4.1.0",
     "jest-mock": "^23.2.0",
     "jquery": "^3.1.1",
+    "level-rocksdb": "^3.0.1",
     "moment": "^2.22.2",
     "mongoose": "^4.13.17",
     "path": "^0.12.7",
