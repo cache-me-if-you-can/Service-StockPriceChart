@@ -27,3 +27,7 @@ build/
 bundle.js
 config.js
 sample.css
+
+database/randomstuff
+database/rocksdb
+newrelic.js

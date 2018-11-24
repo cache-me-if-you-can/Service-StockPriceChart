@@ -2,10 +2,10 @@ const faker = require('faker');
 const db = require('./index.js');
 const { PriceDataDay } = require('./PriceDataDay.js');
 
-const stockPriceDay = () => {
+const stockPriceDay = (n) => {
   const result = [];
 
-  for (let id = 0; id < 121; id += 1) {
+  for (let id = 0; id < n; id += 1) {
     const symbol = faker.finance.currencyCode();
     const name = faker.company.companyName();
     const owner = faker.random.number({ min: 100, max: 900 });
