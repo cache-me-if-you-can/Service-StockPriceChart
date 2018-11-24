@@ -6,7 +6,7 @@ const writer = csvWriter({
 });
 
 const stockPriceDay = (n, outFile) => {
-  const stream = fs.createWriteStream(outFile, { flags: 'w' });
+  const stream = fs.createWriteStream(outFile, { flags: 'a' });
   writer.pipe(stream);
 
 

@@ -17,5 +17,5 @@ CREATE TABLE prices (
   time INT
 );
 
-copy stocks(id, symbol, name, owner, rating) 
-FROM '/Users/mrkent/hackreactor/sdc/kent-price-chart/database/stocks.csv' DELIMITER ',' CSV;
+create unique index symbol_index on stocks (symbol);
+create index stock_id_index on prices (stock_id);

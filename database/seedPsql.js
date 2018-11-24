@@ -46,7 +46,7 @@ const genPricesTable = async (start, finish, outFile) => {
   const writer = new Writer(outFile);
 
   for (let id = start; id < finish; id += 1) {
-    for (let time = 0; time < 50; time += 1) {
+    for (let time = 0; time < 10; time += 1) {
       const price = Number(faker.finance.amount(100, 900, 0));
 
       const res = writer.write({ stock_id: id, price, time });
@@ -61,7 +61,7 @@ const genPricesTable = async (start, finish, outFile) => {
 
 const tableChoice = process.argv[2];
 const start = Number(process.argv[3]) || 0;
-const finish = Number(process.argv[4]) || 10;
+const finish = Number(process.argv[4]) || 10000000;
 
 
 if (tableChoice == 'stock') {
@@ -77,3 +77,6 @@ if (tableChoice == 'price') {
   const filename = 'prices.csv';
   genPricesTable(start, finish, filename);
 }
+
+// copy prices(stock_id, price, time)
+// FROM '/Users/mrkent/hackreactor/sdc/kent-price-chart/database/prices.csv' DELIMITER ',' CSV;
