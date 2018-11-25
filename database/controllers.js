@@ -8,10 +8,10 @@ module.exports.create = function (item, callback) {
   PriceDataDay.create(item, callback);
 };
 
-module.exports.update = function (id, newItem, callback) {
-  PriceDataDay.findOneAndUpdate({ id }, newItem, callback);
+module.exports.update = function (item, callback) {
+  PriceDataDay.findOneAndUpdate({ id: item.id }, item, callback);
 };
 
-module.exports.remove = function (id, callback) {
-  PriceDataDay.deleteOne({ id }, callback);
+module.exports.remove = function (item, callback) {
+  PriceDataDay.deleteOne({ id: item.id, time: item.time }, callback);
 };
