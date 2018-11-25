@@ -16,54 +16,43 @@ res:
 ```
 [
     {
-        "_id": "5bec737689641dcdc5dea9f5",
-        "id": 1,
-        "symbol": "PHP",
-        "name": "Cremin - Goyette",
-        "price": 277.96,
-        "date": "Thu Oct 25 2018 09:00:00 GMT-0700 (Pacific Daylight Time)",
-        "__v": 0,
-        "rating": 4,
-        "owner": 506
+        "id": 11,
+        "symbol": "B",
+        "name": "Smith and Sons",
+        "owner": 587,
+        "rating": 85,
+        "stock_id": 1,
+        "price": 542,
+        "time": 0
     },
     ...
 ]
 ```
 #### POST
-req.body and res:
+req.body:
 ```
 {
-    "symbol": "PHP",
-    "name": "Cremin - Goyette",
-    "price": 277.96,
-    "date": "Thu Oct 25 2018 09:00:00 GMT-0700 (Pacific Daylight Time)",
-    "__v": 0,
-    "rating": 4,
-    "owner": 506
+    "price": 130
 }
 ```
+res: 201, OK
 #### PUT
-req.body and res:
+req.body:
 ```
 {
-    "symbol": "PHP",
-    "name": "Cremin - Goyette",
-    "price": 277.96,
-    "date": "Thu Oct 25 2018 09:00:00 GMT-0700 (Pacific Daylight Time)",
-    "__v": 0,
-    "rating": 4,
-    "owner": 506
+    "price": 130,
+    "time": 14
 }
 ```
-
+res: 200, OK
 #### DELETE
-res:
+req.body:
 ```
 {
-    "n": 1,
-    "ok": 1
+    "time": 14
 }
 ```
+res: 202, OK
 
 ## Requirements
 

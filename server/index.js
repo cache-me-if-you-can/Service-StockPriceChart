@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 // const { PriceDataDay } = require('../database/PriceDataDay.js');
-const db = require('../database/index.js');
-const controllers = require('../database/controllers.js');
+// const db = require('../database/index.js');
+const controllers = require('../database/pg/models.js');
 
 const app = express();
 const PORT = 3001;
@@ -37,7 +37,7 @@ app.route('/api/symbol/:id/day')
       if (error) {
         next(error);
       } else {
-        res.status(200).send(results);
+        res.status(201).send('OK');
       }
     };
 
@@ -53,24 +53,27 @@ app.route('/api/symbol/:id/day')
       if (error) {
         next(error);
       } else {
-        res.status(200).send(results);
+        res.status(200).send('OK');
       }
     };
 
-    controllers.update(id, item, resSender);
+    controllers.update(item, resSender);
   })
   .delete((req, res) => {
     const { id } = req.params;
+
+    const item = { ...req.body };
+    item.id = id;
 
     const resSender = (error, results, next) => {
       if (error) {
         next(error);
       } else {
-        res.status(200).send(results);
+        res.status(202).send('OK');
       }
     };
 
-    controllers.remove(id, resSender);
+    controllers.remove(item, resSender);
   });
 
 
