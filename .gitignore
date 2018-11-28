@@ -31,3 +31,6 @@ sample.css
 database/randomstuff
 database/rocksdb
 newrelic.js
+server/artillery.yml
+server/testUtils.js
+database/rocks/rocksdb/

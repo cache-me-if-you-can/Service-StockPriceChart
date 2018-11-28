@@ -1,7 +1,7 @@
 const faker = require('faker');
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
-const utils = require('./utils.js');
+const utils = require('../utils.js');
 
 class Writer {
   constructor(file) {

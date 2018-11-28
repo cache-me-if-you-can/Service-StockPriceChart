@@ -1,4 +1,4 @@
-const { PriceDataDay } = require('../database/PriceDataDay.js');
+const { PriceDataDay } = require('./PriceDataDay.js');
 
 module.exports.read = function (id, callback) {
   PriceDataDay.find({ id }, null, { sort: { date: 1 } }, callback);
