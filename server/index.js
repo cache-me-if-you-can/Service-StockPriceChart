@@ -1,108 +1,125 @@
+/* eslint-disable func-names */
 require('newrelic');
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const morgan = require('morgan');
+const cluster = require('cluster');
 
-process.title = 'node express service';
+if (cluster.isMaster) {
+  process.title = 'node cluster master';
+  const cpuCount = require('os').cpus().length;
+  for (let i = 0; i < cpuCount; i += 1) {
+    cluster.fork();
+  }
 
-// const { PriceDataDay } = require('../database/PriceDataDay.js');
-// const db = require('../database/index.js');
-const controllers = require('../database/rocks/controllers.js');
+  // eslint-disable-next-line prefer-arrow-callback
+  cluster.on('exit', function (worker) {
+    console.log('Worker %d died :(', worker.id);
+    cluster.fork();
+  });
+} else {
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const path = require('path');
+  // const morgan = require('morgan');
 
-const app = express();
-const PORT = 3001;
+  process.title = 'node express service';
 
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/../client/dist')));
-app.use(function errLogger(err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-});
+  // const { PriceDataDay } = require('../database/PriceDataDay.js');
+  // const db = require('../database/index.js');
+  const controllers = require('../database/pg/controllers.js');
 
-app.route('/api/symbol/:id/day')
-  .get((req, res, next) => {
-    const { id } = req.params;
+  const app = express();
+  const PORT = 3001;
 
-    const resSender = (error, results) => {
-      if (error) {
-        next(error);
-      }
-      // console.log(results);
-      res.status(200).send(results);
-    };
-
-    controllers.read(id, resSender);
-  })
-  .post((req, res, next) => {
-    const { id } = req.params;
-
-    const item = { ...req.body };
-    item.id = id;
-
-    const resSender = (error, results) => {
-      if (error) {
-        next(error);
-      } else {
-        res.status(201).send('OK');
-      }
-    };
-
-    controllers.create(item, resSender);
-  })
-  .put((req, res, next) => {
-    const { id } = req.params;
-
-    const item = { ...req.body };
-    item.id = id;
-
-    const resSender = (error, results) => {
-      if (error) {
-        next(error);
-      } else {
-        res.status(200).send('OK');
-      }
-    };
-
-    controllers.update(item, resSender);
-  })
-  .delete((req, res, next) => {
-    const { id } = req.params;
-
-    const item = { ...req.body };
-    item.id = id;
-
-    const resSender = (error, results) => {
-      if (error) {
-        next(error);
-      } else {
-        res.status(202).send('OK');
-      }
-    };
-
-    controllers.remove(item, resSender);
+  // app.use(morgan('dev'));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.static(path.join(__dirname, '/../client/dist')));
+  app.use(function errLogger(err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
   });
 
+  app.route('/api/symbol/:id/day')
+    .get((req, res, next) => {
+      const { id } = req.params;
 
-// app.get('/api/symbol/:id/week', (req, res) => {
-//   const { id } = req.params;
-//   PriceDataDay.find({ id }, null, { sort: { date: 1 } }, (error, results, next) => {
-//     if (error) {
-//       next(error);
-//     } else {
-//       res.status(200).send(results);
-//     }
-//   });
-// });
+      const resSender = (error, results) => {
+        if (error) {
+          next(error);
+        }
+        // console.log(results);
+        res.status(200).send(results);
+      };
 
-app.use('/stockprice', express.static(path.join(__dirname, '/../client/dist')));
-app.get('/stockprice/:id', (req, res) => {
-  res.status(200);
-  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
-});
+      controllers.read(id, resSender);
+    })
+    .post((req, res, next) => {
+      const { id } = req.params;
 
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
+      const item = { ...req.body };
+      item.id = id;
+
+      const resSender = (error, results) => {
+        if (error) {
+          next(error);
+        } else {
+          res.status(201).send('OK');
+        }
+      };
+
+      controllers.create(item, resSender);
+    })
+    .put((req, res, next) => {
+      const { id } = req.params;
+
+      const item = { ...req.body };
+      item.id = id;
+
+      const resSender = (error, results) => {
+        if (error) {
+          next(error);
+        } else {
+          res.status(200).send('OK');
+        }
+      };
+
+      controllers.update(item, resSender);
+    })
+    .delete((req, res, next) => {
+      const { id } = req.params;
+
+      const item = { ...req.body };
+      item.id = id;
+
+      const resSender = (error, results) => {
+        if (error) {
+          next(error);
+        } else {
+          res.status(202).send('OK');
+        }
+      };
+
+      controllers.remove(item, resSender);
+    });
+
+
+  // app.get('/api/symbol/:id/week', (req, res) => {
+  //   const { id } = req.params;
+  //   PriceDataDay.find({ id }, null, { sort: { date: 1 } }, (error, results, next) => {
+  //     if (error) {
+  //       next(error);
+  //     } else {
+  //       res.status(200).send(results);
+  //     }
+  //   });
+  // });
+
+  app.use('/stockprice', express.static(path.join(__dirname, '/../client/dist')));
+  app.get('/stockprice/:id', (req, res) => {
+    res.status(200);
+    res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
+  });
+
+  app.listen(PORT, () => {
+    console.log(`listening on port ${PORT}`);
+  });
+}
