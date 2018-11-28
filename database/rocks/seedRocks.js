@@ -1,6 +1,6 @@
 const faker = require('faker');
 const level = require('level-rocksdb');
-const utils = require('./utils.js');
+const utils = require('../utils.js');
 const { performance } = require('perf_hooks');
 const _ = require('underscore');
 
